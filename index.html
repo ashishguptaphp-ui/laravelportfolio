@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laravel Developer Portfolio</title>
+  <meta name="description" content="Portfolio website for a Laravel developer showcasing projects, skills, and contact details." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0d1728;
+      --panel-2: #13253b;
+      --text: #edf4ff;
+      --muted: #bdd1ea;
+      --accent: #6ee7ff;
+      --accent-2: #8b5cf6;
+      --success: #34d399;
+      --border: rgba(148, 163, 184, 0.18);
+      --shadow: 0 20px 40px rgba(8, 15, 28, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(110, 231, 255, 0.08), transparent 25%),
+        linear-gradient(160deg, #040914 0%, var(--bg) 45%, #091322 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 17, 31, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    main { padding-bottom: 4rem; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(110, 231, 255, 0.08);
+      border: 1px solid rgba(110, 231, 255, 0.25);
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { line-height: 1.1; margin-top: 0; }
+    h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 0.75rem; }
+    p { color: var(--muted); }
+
+    .lead { font-size: 1.05rem; max-width: 680px; }
+
+    .actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.8rem 1rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #38bdf8 35%, #8b5cf6 100%);
+      color: #02111f;
+    }
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(13, 23, 40, 0.95), rgba(19, 37, 59, 0.94));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 1.2rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .mini-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(8, 15, 28, 0.55);
+    }
+    .mini-stat strong { display: block; font-size: 1.1rem; color: var(--text); }
+    .mini-stat span { color: var(--muted); font-size: 0.95rem; }
+
+    section { padding-top: 1rem; }
+    .section-title { margin-bottom: 1rem; }
+
+    .grid-3, .grid-2 {
+      display: grid;
+      gap: 1rem;
+    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(8, 15, 28, 0.55);
+    }
+    .card h3 { margin-bottom: 0.35rem; font-size: 1.05rem; }
+    .card p { margin: 0; font-size: 0.96rem; }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .chip {
+      border: 1px solid rgba(110, 231, 255, 0.25);
+      background: rgba(110, 231, 255, 0.08);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.92rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .tag {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .contact-box {
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(8, 15, 28, 0.85), rgba(20, 37, 59, 0.95));
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 2rem 0 3rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero { padding-top: 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { font-size: 0.9rem; }
+      h1 { font-size: 2.3rem; }
+      .actions { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">Laravel Dev</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="container hero">
+      <div>
+        <span class="eyebrow">Full-Stack Laravel Developer</span>
+        <h1>Building fast, secure, and scalable web apps for modern businesses.</h1>
+        <p class="lead">I design clean APIs, elegant admin panels, and production-ready Laravel solutions that help startups and teams ship with confidence.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-card">
+        <div class="mini-stat">
+          <div>
+            <strong>6+</strong>
+            <span>Years building web apps</span>
+          </div>
+          <div>
+            <strong>15</strong>
+            <span>Live deployments</span>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <div>
+            <strong>Laravel</strong>
+            <span>PHP, Blade, Livewire</span>
+          </div>
+          <div>
+            <strong>Vue / React</strong>
+            <span>Modern front ends</span>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <div>
+            <strong>API</strong>
+            <span>REST + JWT + OAuth</span>
+          </div>
+          <div>
+            <strong>Cloud</strong>
+            <span>Docker, AWS, CI/CD</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>What I do</h3>
+          <p>I create Laravel applications with a strong focus on maintainable architecture, clean code, and excellent user experience. From booking systems to SaaS dashboards, I turn complex ideas into practical products.</p>
+        </article>
+        <article class="card">
+          <h3>Why clients choose me</h3>
+          <p>I pair deep technical skills with clear communication, fast iteration, and reliable delivery. I care about performance, security, and the long-term health of every project I build.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="container">
+      <h2 class="section-title">Core Skills</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Backend</h3>
+          <p>Laravel, PHP, Eloquent, Queues, Jobs, Middleware, API authentication.</p>
+          <div class="chip-row"><span class="chip">Laravel</span><span class="chip">PHP 8</span><span class="chip">MySQL</span></div>
+        </article>
+        <article class="card">
+          <h3>Frontend</h3>
+          <p>Blade, Livewire, Alpine.js, Vue, React, Tailwind CSS, responsive design.</p>
+          <div class="chip-row"><span class="chip">Blade</span><span class="chip">Livewire</span><span class="chip">Tailwind</span></div>
+        </article>
+        <article class="card">
+          <h3>DevOps</h3>
+          <p>Docker, GitHub Actions, deployment automation, logging, monitoring, and cloud hosting.</p>
+          <div class="chip-row"><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">AWS</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="grid-3">
+        <article class="card project-card">
+          <span class="tag">SaaS Platform</span>
+          <h3>Client Portal Dashboard</h3>
+          <p>Built a secure multi-tenant dashboard with invoicing, analytics, and role-based access using Laravel + Vue.</p>
+        </article>
+        <article class="card project-card">
+          <span class="tag">E-commerce</span>
+          <h3>Inventory & Order Management</h3>
+          <p>Created a fast admin system for stock tracking, automated order workflows, and reporting tools.</p>
+        </article>
+        <article class="card project-card">
+          <span class="tag">API</span>
+          <h3>Integration Hub</h3>
+          <p>Developed third-party integrations and webhook handling for payment, CRM, and notification services.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2 class="section-title">What I Bring</h2>
+      <div class="grid-3">
+        <article class="card"><h3>Reliable Architecture</h3><p>Scalable code structure, clean service layers, and maintainable migrations.</p></article>
+        <article class="card"><h3>Performance Focus</h3><p>Query optimization, caching, background jobs, and smooth UX for business-critical tools.</p></article>
+        <article class="card"><h3>Clear Collaboration</h3><p>Technical documentation, agile planning, and regular updates so your team stays informed.</p></article>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Let’s Work Together</h2>
+      <div class="contact-box">
+        <p>Interested in hiring a Laravel developer for a new product, internal tool, or SaaS platform? Send me a message and I’ll be happy to discuss your goals.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:hello@example.com">hello@example.com</a>
+          <a class="btn btn-secondary" href="https://github.com" target="_blank" rel="noreferrer">GitHub Portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Laravel Developer Portfolio. Built for showcasing your work.</div>
+  </footer>
+</body>
+</html>
