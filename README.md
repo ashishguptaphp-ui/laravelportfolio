@@ -3,8 +3,11 @@
 ### Sharp Connect
 
 **Client:** Sharp Instincts, Australia
+
 **Industry:** Digital Marketing & Web Services
+
 **Technology:** Laravel 9, PHP, MySQL
+
 
 **Key Responsibilities:**
 
@@ -19,6 +22,7 @@
 ### Anco Turf
 
 **Industry:** Retail (E-commerce)
+
 **Technology:** Laravel 7, PHP, MySQL
 
 **Key Responsibilities:**
@@ -34,6 +38,7 @@
 ### Petals Preschool
 
 **Industry:** Education
+
 **Technology:** Angular 7, Laravel 7, PHP, MySQL
 
 **Key Responsibilities:**
@@ -48,6 +53,7 @@
 ### Intercellworld
 
 **Industry:** Education
+
 **Technology:** Angular 7, Laravel 5.7, PHP, MySQL
 
 **Key Responsibilities:**
@@ -62,6 +68,7 @@
 ### Designhill
 
 **Industry:** Online Marketplace
+
 **Technology:** PHP, MySQL, jQuery, AJAX
 
 **Key Responsibilities:**
@@ -75,6 +82,7 @@
 ### DayNight Chemists
 
 **Industry:** E-commerce
+
 **Technology:** CodeIgniter, PHP, MySQL, jQuery, AJAX
 
 **Key Responsibilities:**
@@ -89,6 +97,7 @@
 ### RealEstateIndia
 
 **Industry:** Real Estate Portal
+
 **Technology:** PHP, MySQL, jQuery, AJAX
 
 **Key Responsibilities:**
